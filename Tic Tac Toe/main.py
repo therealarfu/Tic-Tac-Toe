@@ -49,6 +49,7 @@ def checkVictory():
         if pos == 0:
             return 'Continue'
 
+    TURN = 2
     game = [0, 0, 0, 0, 0, 0, 0, 0, 0].copy()
     return 'Draw'
 
@@ -93,7 +94,12 @@ def get_cell(mouse_pos):
     cell_size = board_size // 3
     row = (mouse_pos[1] - scoreboard_height - board_y) // cell_size
     col = (mouse_pos[0] - board_x) // cell_size
-    return row, col
+
+    if 0 <= row < 3 and 0 <= col < 3:
+        return row, col
+    else:
+        return -1, -1
+
 
 while True:
     clock.tick(60)
@@ -105,7 +111,7 @@ while True:
             mouse_pos = pygame.mouse.get_pos()
             if scoreboard_height + board_y <= mouse_pos[1] <= scoreboard_height + board_y + board_size:
                 row, col = get_cell(mouse_pos)
-                if game[row * 3 + col] == 0:
+                if row != -1 and col != -1 and game[row * 3 + col] == 0:
                     play(TURN, row * 3 + col)
 
     screen.fill(black)
