@@ -1,2 +1,2 @@
 # Tic-Tac-Toe
-It's a TicTacToe recreation made with pygame
+It's a TicTacToe recreation made with Pygame
